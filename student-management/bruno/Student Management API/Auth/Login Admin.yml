@@ -1,0 +1,33 @@
+info:
+  name: Login Admin
+  type: http
+  seq: 4
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/auth/login"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "admin",
+        "password": "admin12345"
+      }
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: after-response
+      code: |-
+        const data = res.body;
+        if (res.status === 200) {
+          bru.setEnvVar("adminAccessToken", data.accessToken);
+          console.log("Admin token saved");
+        }
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

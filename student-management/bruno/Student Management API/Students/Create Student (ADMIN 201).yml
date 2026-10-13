@@ -1,0 +1,32 @@
+info:
+  name: Create Student (ADMIN 201)
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: "{{baseUrl}}/api/students"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminAccessToken}}
+  body:
+    type: json
+    data: |-
+      {
+        "fullName": "Petr Sidorov",
+        "group": "P3224",
+        "isu": "888888",
+        "dormNumber": 6,
+        "room": 15,
+        "dateArrived": "2024-09-01",
+        "isForeign": false,
+        "notes": "created by admin"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

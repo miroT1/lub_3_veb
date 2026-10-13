@@ -1,0 +1,19 @@
+info:
+  name: Delete Student
+  type: http
+  seq: 8
+
+http:
+  method: DELETE
+  url: "{{baseUrl}}/api/students/2"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminAccessToken}}
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false

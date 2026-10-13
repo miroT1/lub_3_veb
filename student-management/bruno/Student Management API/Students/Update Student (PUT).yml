@@ -1,0 +1,32 @@
+info:
+  name: Update Student (PUT)
+  type: http
+  seq: 6
+
+http:
+  method: PUT
+  url: "{{baseUrl}}/api/students/1"
+  headers:
+    - name: Authorization
+      value: Bearer {{adminAccessToken}}
+  body:
+    type: json
+    data: |-
+      {
+        "fullName": "Ivan Petrov Updated",
+        "group": "P3225",
+        "isu": "123456",
+        "dormNumber": 7,
+        "room": 20,
+        "dateArrived": "2024-09-15",
+        "isForeign": false,
+        "notes": "fully updated"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: false
