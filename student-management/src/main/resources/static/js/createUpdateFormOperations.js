@@ -65,7 +65,7 @@ async function updateExistingStudent(studentID) {
         student.group ?? "";
 
     document.querySelector("#stu-isu").value =
-        student.ISU ?? "";
+        student.isu ?? "";
 
     document.querySelector("#stu-hostel").value =
         student.dormNumber ?? "";
@@ -101,7 +101,7 @@ async function updateExistingStudent(studentID) {
                 formData.get("stu-date"),
                 formData.has("stu-foreign"),
                 formData.get("stu-notes"),
-                student.ID
+                student.id
             );
 
             await updateStudent(

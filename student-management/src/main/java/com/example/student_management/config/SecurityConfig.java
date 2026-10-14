@@ -27,6 +27,15 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
+                    .requestMatchers(
+                            "/",
+                            "/html/**",
+                            "/css/**",
+                            "/js/**",
+                            "/favicon.png",
+                            "/favicon.ico"
+                    ).permitAll()
+
                     // Swagger / OpenAPI — публично
                     .requestMatchers(
                             "/swagger-ui/**",
