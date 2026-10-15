@@ -36,7 +36,6 @@ public class SecurityConfig {
                             "/favicon.ico"
                     ).permitAll()
 
-                    // Swagger / OpenAPI — публично
                     .requestMatchers(
                             "/swagger-ui/**",
                             "/swagger-ui.html",
@@ -44,20 +43,16 @@ public class SecurityConfig {
                             "/webjars/**"
                     ).permitAll()
 
-                    // Публичные эндпоинты аутентификации
                     .requestMatchers("/api/auth/**").permitAll()
 
-                    // USER и ADMIN могут читать студентов
                     .requestMatchers(HttpMethod.GET, "/api/students/**")
                         .hasAnyRole("USER", "ADMIN")
 
-                    // Изменять студентов может только ADMIN
                     .requestMatchers(HttpMethod.POST, "/api/students/**").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.PUT, "/api/students/**").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.PATCH, "/api/students/**").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.DELETE, "/api/students/**").hasRole("ADMIN")
 
-                    // Всё остальное — только аутентифицированные
                     .anyRequest().authenticated()
             )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

@@ -45,7 +45,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String username = jwtService.extractUsername(token);
             String type = jwtService.extractTokenType(token);
 
-            // На защищённые ресурсы пускаем только с access-токеном
             if (username != null && "access".equals(type)
                     && SecurityContextHolder.getContext().getAuthentication() == null) {
 

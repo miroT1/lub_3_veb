@@ -26,7 +26,6 @@ public class JwtService {
     @Value("${app.jwt.refresh-expiration-ms}")
     private long refreshExpirationMs;
 
-    // ---- Генерация ----
 
     public String generateAccessToken(UserDetails userDetails) {
         return buildToken(userDetails.getUsername(), accessExpirationMs, "access");
@@ -48,7 +47,6 @@ public class JwtService {
                 .compact();
     }
 
-    // ---- Чтение ----
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
@@ -70,8 +68,6 @@ public class JwtService {
                 .getPayload();
         return resolver.apply(claims);
     }
-
-    // ---- Валидация ----
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
         try {
